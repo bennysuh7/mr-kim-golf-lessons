@@ -3,75 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>프리미엄 골프 레슨</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Mr. Kim the Pro - 프리미엄 골프 레슨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
-            font-family: 'Noto Sans KR', sans-serif;
-            background-color: #e8f5e9;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                        url('https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            letter-spacing: 2px;
+        }
+        .logo span {
+            color: #4CAF50;
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            opacity: 0.95;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 18px 45px;
+            background: linear-gradient(135deg, #1976D2 0%, #4CAF50 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(76, 175, 80, 0.6);
+        }
+        .pricing-section {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            text-align: center;
+            color: #FFD700;
+            margin-bottom: 60px;
+        }
+        .pricing-cards {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s;
+            position: relative;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #FFD700;
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
+        }
+        .card.featured {
+            border: 3px solid #FFD700;
+            background: rgba(255, 215, 0, 0.08);
+        }
+        .featured-badge {
+            position: absolute;
+            top: -15px;
+            right: 30px;
+            background: #FFD700;
+            color: #1a1a2e;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .card-title {
+            font-size: 1.8rem;
+            color: #FFD700;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .card-duration {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        .card-price {
+            font-size: 2.5rem;
+            color: white;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+        .card-features {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        .book-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA000 100%);
+            color: #1a1a2e;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+        }
+        .book-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.6);
+        }
+        .discount {
+            color: #4CAF50;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        footer {
+            background: #0a0a0a;
+            color: #FFD700;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        footer a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.2rem; }
+            .section-title { font-size: 2rem; }
+            .pricing-cards { grid-template-columns: 1fr; }
         }
     </style>
 </head>
-<body class="min-h-screen">
-    <!-- Header -->
-    <header class="text-center py-16">
-        <h1 class="text-4xl font-bold text-gray-800 mb-3">프리미엄 골프 레슨</h1>
-        <p class="text-lg text-gray-600">전문 프로 코치와 함께 1:1 맞춤 레슨</p>
-    </header>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="logo">Mr. <span>Kim</span> the Pro</div>
+        <h1 class="hero-title">프리미엄 골프 레슨</h1>
+        <p class="hero-subtitle">전문 프로와 함께 완벽한 스윙을 완성하세요</p>
+        <a href="#pricing" class="cta-button">레슨 예약하기</a>
+    </section>
 
-    <!-- Cards Section -->
-    <main class="max-w-5xl mx-auto px-6 pb-16">
-        <div class="grid md:grid-cols-3 gap-6">
-            
-            <!-- Card 1: 기초 레슨 -->
-            <div class="bg-white rounded-2xl p-8 shadow-sm text-center">
-                <div class="text-4xl mb-4">🏌️‍♂️</div>
-                <h2 class="text-xl font-semibold text-gray-800 mb-2">기초 레슨</h2>
-                <p class="text-gray-500 text-sm mb-4">50분 | 1:1 레슨</p>
-                <p class="text-3xl font-bold text-gray-800 mb-4">₩50,000</p>
-                <p class="text-gray-500 text-sm mb-6">그립, 스탠스 기초</p>
-                <a href="https://buy.stripe.com/test_4gM8wI83vfg2ba4tT8og00" 
-                   class="block w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-6 rounded-lg transition-colors">
-                    예약하기
-                </a>
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section">
+        <h2 class="section-title">레슨 패키지</h2>
+        <div class="pricing-cards">
+            <!-- Basic Lesson -->
+            <div class="card">
+                <div class="card-icon">🏌️‍♂️</div>
+                <h3 class="card-title">기초 레슨</h3>
+                <p class="card-duration">50분 | 1:1 레슨</p>
+                <div class="card-price">₩50,000</div>
+                <p class="card-features">
+                    그립, 스탠스 기초<br>
+                    스윙 자세 교정<br>
+                    초보자 맞춤 레슨
+                </p>
+                <a href="https://buy.stripe.com/test_4gM8wI83vfg2ba4tT8og00" class="book-button">예약하기</a>
             </div>
 
-            <!-- Card 2: 프리미엄 레슨 -->
-            <div class="bg-white rounded-2xl p-8 shadow-sm text-center relative border-2 border-green-400">
-                <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-green-500 text-white text-xs font-medium px-3 py-1 rounded-full">
-                    인기
-                </div>
-                <div class="text-4xl mb-4">⭐</div>
-                <h2 class="text-xl font-semibold text-gray-800 mb-2">프리미엄 레슨</h2>
-                <p class="text-gray-500 text-sm mb-4">90분 | 1:1 레슨</p>
-                <p class="text-3xl font-bold text-gray-800 mb-4">₩100,000</p>
-                <p class="text-gray-500 text-sm mb-6">스윙 분석 + 비디오 피드백</p>
-                <a href="https://buy.stripe.com/test_3cI4gs5Vnbf0bLKgc8Bog01" 
-                   class="block w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-6 rounded-lg transition-colors">
-                    예약하기
-                </a>
+            <!-- Premium Lesson -->
+            <div class="card featured">
+                <span class="featured-badge">인기</span>
+                <div class="card-icon">⭐</div>
+                <h3 class="card-title">프리미엄 레슨</h3>
+                <p class="card-duration">90분 | 1:1 레슨</p>
+                <div class="card-price">₩100,000</div>
+                <p class="card-features">
+                    스윙 분석 + 비디오 피드백<br>
+                    맞춤형 트레이닝 플랜<br>
+                    프로 장비 추천
+                </p>
+                <a href="https://buy.stripe.com/test_3cI4gs5Vnbf0bLKgc8Bog01" class="book-button">예약하기</a>
             </div>
 
-            <!-- Card 3: 5회 패키지 -->
-            <div class="bg-white rounded-2xl p-8 shadow-sm text-center">
-                <div class="text-4xl mb-4">🎁</div>
-                <h2 class="text-xl font-semibold text-gray-800 mb-2">5회 패키지</h2>
-                <p class="text-green-600 text-sm font-medium mb-2">10% 할인!</p>
-                <p class="text-gray-500 text-sm mb-4">90분 × 5회</p>
-                <p class="text-3xl font-bold text-gray-800 mb-4">₩200,000</p>
-                <a href="https://buy.stripe.com/test_28E4gs2Jbdn83fee4t8og02" 
-                   class="block w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-6 rounded-lg transition-colors">
-                    예약하기
-                </a>
+            <!-- Package -->
+            <div class="card">
+                <div class="card-icon">🎁</div>
+                <h3 class="card-title">5회 패키지</h3>
+                <p class="discount">10% 할인!</p>
+                <p class="card-duration">90분 × 5회</p>
+                <div class="card-price">₩200,000</div>
+                <p class="card-features">
+                    장기 트레이닝 프로그램<br>
+                    진행도 추적<br>
+                    최상의 가성비
+                </p>
+                <a href="https://buy.stripe.com/test_28E4gs2Jbdn83fee4t8og02" class="book-button">예약하기</a>
             </div>
-
         </div>
-    </main>
+    </section>
 
     <!-- Footer -->
-    <footer class="text-center py-8 text-gray-500 text-sm">
-        <p>문의: contact@mrkimthepro.com | 위치: 서울 강남구</p>
+    <footer>
+        <p>문의: <a href="mailto:contact@mrkimthepro.com">contact@mrkimthepro.com</a> | 위치: 서울 강남구</p>
+        <p style="margin-top: 15px; opacity: 0.8;">&copy; 2026 Mr. Kim the Pro. All rights reserved.</p>
     </footer>
 </body>
 </html>
